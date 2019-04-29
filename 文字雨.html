@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #my{
+        background-color: black;
+    }
+    
+    
+    </style>
+</head>
+<body>
+    <canvas id="my" width="800" height="500"></canvas>
+    <script>
+    
+    
+    var canvas = document.getElementById('my');
+    var context = canvas.getContext('2d');
+    var str = '1234567890abcdefghijklmnopqrstuvwxyz';
+    var arr = str.split('');
+    var size = 30;
+    var drop = [];
+    for(var i = 0;i < column;i++){
+        drop[i] = 1;
+    }
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
+    console.log(canvas.height);
+    var column = canvas.width/size;
+    var p = context.globalCompositeOperation;
+
+    context.fillStyle='green';
+    context.font=size + 'px sans-serif';
+    
+    function draw(){
+            var p = context.globalCompositeOperation;
+            context.globalCompositeOperation='destination-in';
+            context.globalAlpha=0.9;
+            context.fillRect(0,0,canvas.width,canvas.height);
+            context.globalCompositeOperation=p;
+            
+        for(var i=0;i<column;i++){
+            let n = Math.floor(Math.random()*arr.length);
+            let text = arr[n];
+            let r = Math.random() - 0.1;
+            
+            context.fillText(text, i*size, drop[i]*size);
+            context.fill();
+            
+            drop[i]++;
+            
+           
+            if(drop[i] >= canvas.height || r <= 0){
+                 drop[i] = 1;
+            }
+            
+            
+           
+        }
+        
+    }
+   setInterval(draw,50);
+
+
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>
